@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sorry Bhai 💙</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #f5f7ff;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(18, 54, 100, 0.35), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(0, 70, 130, 0.25), transparent 30%),
+                linear-gradient(135deg, #02040a, #050b16 45%, #000 100%);
+            overflow-x: hidden;
+        }
+
+        /* ---------- Animated background ---------- */
+
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        .star:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 20%; left: 75%; animation-delay: 1s; }
+        .star:nth-child(3) { top: 35%; left: 45%; animation-delay: 2s; }
+        .star:nth-child(4) { top: 60%; left: 12%; animation-delay: .5s; }
+        .star:nth-child(5) { top: 75%; left: 85%; animation-delay: 1.5s; }
+        .star:nth-child(6) { top: 88%; left: 40%; animation-delay: 2.5s; }
+        .star:nth-child(7) { top: 45%; left: 92%; animation-delay: .8s; }
+        .star:nth-child(8) { top: 15%; left: 50%; animation-delay: 1.8s; }
+        .star:nth-child(9) { top: 72%; left: 55%; animation-delay: .3s; }
+        .star:nth-child(10) { top: 30%; left: 8%; animation-delay: 1.2s; }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: .2;
+                transform: scale(.7);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        .glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(0, 80, 160, .12);
+            filter: blur(80px);
+            animation: moveGlow 12s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+
+        .glow.one {
+            top: -150px;
+            left: -150px;
+        }
+
+        .glow.two {
+            bottom: -180px;
+            right: -150px;
+            animation-delay: 3s;
+        }
+
+        @keyframes moveGlow {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(100px, 80px);
+            }
+        }
+
+        /* ---------- Main ---------- */
+
+        .container {
+            width: min(900px, 92%);
+            margin: auto;
+            padding: 70px 0;
+        }
+
+        /* ---------- Hero ---------- */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .small-text {
+            color: #8bbcff;
+            letter-spacing: 4px;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            animation: fadeUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(55px, 12vw, 110px);
+            line-height: .9;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #ffffff, #76b9ff, #ffffff);
+            background-size: 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation:
+                fadeUp 1.2s ease,
+                shine 4s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: #c4ccda;
+            font-size: 18px;
+            line-height: 1.8;
+            animation: fadeUp 1.5s ease;
+        }
+
+        .heart {
+            font-size: 45px;
+            margin-top: 30px;
+            animation: heartbeat 1.7s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+
+        /* ---------- Glass cards ---------- */
+
+        .card {
+            background: rgba(8, 17, 31, .72);
+            border: 1px solid rgba(113, 175, 255, .18);
+            border-radius: 28px;
+            padding: 40px;
+            margin: 45px 0;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, .45),
+                inset 0 1px 0 rgba(255,255,255,.04);
+            backdrop-filter: blur(15px);
+            transition: .4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(113, 175, 255, .4);
+            box-shadow:
+                0 30px 100px rgba(0, 40, 100, .25),
+                inset 0 1px 0 rgba(255,255,255,.06);
+        }
+
+        .card-title {
+            color: #80baff;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .message {
+            color: #dce4ef;
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        .message strong {
+            color: #fff;
+        }
+
+        /* ---------- Promise section ---------- */
+
+        .promise-box {
+            text-align: center;
+            padding: 45px 30px;
+        }
+
+        .promise-box h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .promise-box p {
+            color: #b8c3d4;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        .promise-list {
+            list-style: none;
+            margin-top: 30px;
+            display: grid;
+            gap: 14px;
+            text-align: left;
+        }
+
+        .promise-list li {
+            padding: 17px 20px;
+            border-radius: 15px;
+            background: rgba(255,255,255,.035);
+            border-left: 3px solid #4e9cff;
+            color: #dce6f5;
+            transition: .3s;
+        }
+
+        .promise-list li:hover {
+            background: rgba(70,140,230,.09);
+            transform: translateX(6px);
+        }
+
+        /* ---------- Action section ---------- */
+
+        .action {
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .action h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .action p {
+            color: #aeb9c9;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        button {
+            border: none;
+            padding: 17px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(135deg, #0b4f96, #12366b);
+            box-shadow: 0 10px 35px rgba(20,100,200,.25);
+            transition: .3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 15px 45px rgba(20,100,200,.4);
+        }
+
+        #hiddenMessage {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(70,140,230,.08);
+            border: 1px solid rgba(100,170,255,.18);
+            color: #dcecff;
+            line-height: 1.9;
+            animation: fadeUp .6s ease;
+        }
+
+        /* ---------- Footer ---------- */
+
+        footer {
+            text-align: center;
+            padding: 30px 20px 60px;
+            color: #687588;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #80baff;
+        }
+
+        /* ---------- Animation ---------- */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- Mobile ---------- */
+
+        @media(max-width: 600px) {
+
+            .container {
+                width: 90%;
+                padding: 40px 0;
+            }
+
+            .hero {
+                min-height: 85vh;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .card {
+                padding: 27px 22px;
+                border-radius: 22px;
+            }
+
+            .card h2 {
+                font-size: 26px;
+            }
+
+            .message {
+                font-size: 16px;
+                line-height: 1.9;
+            }
+
+            .promise-box h2,
+            .action h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="small-text">
+                From your chhoti si behen...
+            </div>
+
+            <h1>Sorry<br>Bhai 💙</h1>
+
+            <p>
+                Kuch cheezein bolne se nahi,
+                dil se feel karke samajhni padti hain...
+                And I realised that I am wrong at this point the meanin.
+            </p>
+
+            <div class="heart">🫶</div>
+
+        </section>
+
+
+        <!-- MAIN MESSAGE -->
+        <section class="card reveal">
+
+            <div class="card-title">
+                Dil se bol rahi hoon...
+            </div>
+
+            <h2>Bhai, I am really sorry. 🥺</h2>
+
+            <div class="message">
+
+                <p>
+                    I am  genuinely very sorry for the behaviour. I did not realise that I am hurting the very important person of my life. And I never thought anything wrong for anyone it is just I feel bad when everyone shouts but I understood the reason now and I won't reply back. Ghar me sabko mujhe kuch bhi bolna ka pura power h and I should hv listened when I am wrong and I reaslised it.
+                 </p>
+
+                <br>
+
+                <p>
+                    Jo bhi meaningless baatein maine aaj boli aur jis tarah
+                    se maine argue kiya, <strong>I am really sorry for that.</strong>
+                    Mujhe aise bilkul nahi karna chahiye tha.
+                </p>
+
+                <br>
+
+                <p>
+                    Aur Bhai, main promise karti hoon ki
+                    <strong>abse main apna har meal time pe khaungi.</strong>
+                    Without fail.
+                </p>
+
+                <br>
+
+                <p>
+                    Everyday mera <strong>first task yehi hoga</strong> ki main
+                    time pe properly khana khaun.
+                    Iske liye tumhe mujhe baar-baar bolna ya remind karna
+                    na pade main khud responsible rahungi.
+                </p>
+
+                <br>
+
+                <p>
+                    Aur aaj jo faltu ki baaton pe maine tumse argument kiya,
+                    <strong>woh main repeat nahi karungi.</strong>
+                    Har choti-choti meaningless baat ko argument banana
+                    band karungi.
+                </p>
+
+                <br>
+
+                <p>
+                    Mujhe genuinely realise ho gaya hai ki mere actions
+                    kabhi-kabhi mere words se zyada hurt kar sakte hain.
+                    Isliye main sirf "sorry" bolke baat khatam nahi karna chahti.
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>
+                        Action speaks louder than words.
+                    </strong>
+                </p>
+
+                <br>
+
+                <p>
+                    Toh ab jo bhi change hoga,
+                    woh mere actions mein dikhna chahiye.
+                    Tumhe meri baaton pe believe karne ki zarurat nahi hai —
+                    <strong>mere actions khud proof denge.</strong>
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROMISE -->
+        <section class="card promise-box reveal">
+
+            <div class="card-title">
+                My Promise To You
+            </div>
+
+            <h2>Is baar sirf bol nahi rahi. 💙</h2>
+
+            <p>
+                I really mean it, Bhai.
+                Aur mujhe pata hai ki words bolna easy hota hai,
+                but actual change actions mein dikhna chahiye.
+            </p>
+
+            <ul class="promise-list">
+
+                <li>
+                    🍽️ Main apna har meal time pe khaungi.
+                </li>
+
+                <li>
+                    🕐 Ye mera everyday first task hoga.
+                </li>
+
+                <li>
+                    🤍 Faltu aur meaningless baaton pe argue nahi karungi.
+                </li>
+
+                <li>
+                    🗣️ Rude tone mein baat karne ki habit ko control karungi.
+                </li>
+
+                <li>
+                    🫶 Tum aur meri family mere liye important ho 
+                    ye baat mere actions mein bhi dikhni chahiye.
+                </li>
+
+                <li>
+                    🔒 Aur haan... main ye repeat nahi karungi.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- FINAL MESSAGE -->
+        <section class="card action reveal">
+
+            <h2>Bhai... ek last baar 🥺</h2>
+
+            <p>
+                I am really, really sorry.
+                Jo hua woh mujhe nahi karna chahiye tha.
+                I know "sorry" se sab kuch instantly fix nahi hota,
+                but I genuinely mean it.
+            </p>
+
+            <p>
+                <strong>
+                    I won't repeat this.
+                </strong>
+            </p>
+
+            <button onclick="showMessage()">
+                Ek baar click karna 💙
+            </button>
+
+            <div id="hiddenMessage">
+
+                Bhai, You are very important to me. I don't like it when u said it me kisi ko kuch nhi manti hu sab mere liye devil h. Nahi never ever.
+                ❤️
+
+                <br><br>
+
+                Main perfect nahi hoon,
+                kabhi-kabhi gussa aa jata hai,
+                kabhi bina soche bol deti hoon...
+                but iska matlab ye bilkul nahi ki
+                mujhe tumhari respect ya importance nahi hai.
+
+                <br><br>
+
+                Mujhe pata hai meri galti thi.
+
+                <br><br>
+
+                <strong>
+                    I am sorry, Bhai.
+                    Sach mein. 🫂
+                </strong>
+
+                <br><br>
+
+                Ab words nahi...
+                <strong>actions dekho. 💙</strong>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Made with a guilty heart & lots of love
+        <span>💙 Your Chhoti Sis</span>
+    </footer>
+
+
+    <script>
+
+        /* Scroll reveal animation */
+
+        const reveals = document.querySelectorAll(".reveal");
+
+        function revealOnScroll() {
+
+            reveals.forEach(element => {
+
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add("active");
+                }
+
+            });
+
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+
+        revealOnScroll();
+
+
+        /* Final hidden message */
+
+        function showMessage() {
+
+            const message = document.getElementById("hiddenMessage");
+
+            if (message.style.display === "block") {
+
+                message.style.display = "none";
+
+            } else {
+
+                message.style.display = "block";
+
+                setTimeout(() => {
+                    message.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                }, 100);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
